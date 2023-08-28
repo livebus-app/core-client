@@ -101,10 +101,6 @@ export function CameraInfo({ camera }: { camera: Device }) {
     const [isFetching, setIsFetching] = useState(false);
     const [streamingData, setStreamingData] = useState<CameraStreamingData>();
 
-    useEffect(() => {
-        fetchData();
-    }, [camera, fetchData]);
-
     const fetchData = async () => {
         setIsFetching(true);
         const livestreamData = await new CameraService().getStreamingData(
@@ -114,6 +110,10 @@ export function CameraInfo({ camera }: { camera: Device }) {
         setStreamingData(livestreamData);
         setIsFetching(false);
     };
+
+    useEffect(() => {
+        fetchData();
+    }, [camera]);
 
     const copyCode = () => {
         navigator.clipboard.writeText(camera.id.toString());
