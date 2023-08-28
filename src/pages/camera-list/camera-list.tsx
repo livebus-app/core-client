@@ -4,7 +4,7 @@ import { CameraInfo } from "@/components/liveplayer";
 import { Card } from "@/components/ui/card";
 import { useDevices } from "@/hooks/useDevices";
 
-export function CameraList({ vehicleId }: { vehicleId: number }) {
+export default function CameraList({ vehicleId }: { vehicleId: number }) {
     const { devices } = useDevices(vehicleId);
 
     return <Card className="p-8">

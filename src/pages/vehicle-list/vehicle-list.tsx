@@ -5,12 +5,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Vehicle } from "@/models/vehicle.model";
 import Link from "next/link";
 
-export function VehicleList({ vehicles }: { vehicles: Vehicle[] }) {
+export default function VehicleList({ vehicles }: { vehicles: Vehicle[] }) {
     return (
         <div className="w-full">
             <h3 className="scroll-m-20 text-xl font-semibold mb-4">Veículos</h3>
             <div className="w-full grid gap-12 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
-                {vehicles.map((vehicle) => (
+                {vehicles?.map((vehicle) => (
                     <Card key={vehicle.id} className="bg-gradient-to-tr from-yellow-950/20 hover:from-yellow-950/30 transition-colors">
                         <CardHeader>
                             <CardTitle className="mb-4 flex justify-between items-center">

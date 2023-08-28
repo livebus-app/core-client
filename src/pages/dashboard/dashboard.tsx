@@ -9,7 +9,7 @@ import Image from "next/image";
 import { useMemo } from "react";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Text, Label, LineChart, Line, ReferenceLine, Legend } from "recharts"
 
-export function Dashboard({ vehicleId }: { vehicleId: number }) {
+export default function Dashboard({ vehicleId }: { vehicleId: number }) {
     const { vehicle } = useVehicle(vehicleId);
     const { telemetry } = useVehicleTelemetry(vehicleId);
     const { telemetryHistory } = useVehicleTelemetryHistory(vehicleId);

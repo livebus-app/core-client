@@ -1,12 +1,7 @@
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
 import { VehicleService } from "@/services/vehicle.service";
-import { CameraInfo } from "@/components/liveplayer";
-import VehicleTelemetryPanel from "@/components/vehicle-telemetry-panel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Dashboard } from "@/pages/dashboard/dashboard";
-import { FrameList } from "@/pages/frame-list/frame-list";
-import { CameraList } from "@/pages/camera-list/camera-list";
+import Dashboard from "@/pages/dashboard/dashboard";
+import CameraList from "@/pages/camera-list/camera-list";
 
 export default async function Home({ params }: { params: { id: number } }) {
 	const vehicle = await new VehicleService().getVehicle(params.id);

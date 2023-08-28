@@ -223,6 +223,7 @@ export function LivePlayerActions({
             <DropdownMenuContent align="end">
                 {actions.map((action) => (
                     <DropdownMenuItem
+                        key={action.label}
                         className="items-center gap-2"
                         onClick={action.action}
                     >

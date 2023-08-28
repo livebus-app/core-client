@@ -8,7 +8,7 @@ import { VehicleService } from "@/services/vehicle.service";
 import Image from "next/image";
 import { useState } from "react";
 
-export function FrameList(props: FrameListProps) {
+export default function FrameList(props: FrameListProps) {
     const vehicleService = new VehicleService();
     const [selectedDevice, setSelectedDevice] = useState<string>();
 
