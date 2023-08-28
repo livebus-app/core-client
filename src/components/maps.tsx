@@ -59,7 +59,7 @@ export function Maps() {
         if (map.current) {
             map.current.setStyle(`https://maps.geo.us-east-1.amazonaws.com/maps/v0/maps/livebus-${systemTheme}-maps/style-descriptor?key=${API_KEY}`)
         }
-    }, [systemTheme])
+    }, [systemTheme, API_KEY])
 
     return (
         <div ref={mapContainer} className="absolute top-0 left-0 w-full h-full" />

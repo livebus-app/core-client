@@ -103,7 +103,7 @@ export function CameraInfo({ camera }: { camera: Device }) {
 
     useEffect(() => {
         fetchData();
-    }, [camera]);
+    }, [camera, fetchData]);
 
     const fetchData = async () => {
         setIsFetching(true);
