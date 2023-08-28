@@ -86,7 +86,7 @@ export function Dashboard({ vehicleId }: { vehicleId: number }) {
                     <TableBody className="overflow-auto h-full">
                         {
                             [...sortedTelemetryHistory || []].sort((a, b) => b.id - a.id)?.map(telemetryItem => (
-                                <TableRow>
+                                <TableRow key={telemetryItem.id}>
                                     <TableCell className="font-medium">{telemetryItem.id}</TableCell>
                                     <TableCell>{telemetryItem.passengerCount}</TableCell>
                                     <TableCell>{new Date(telemetryItem.timestamp).toLocaleString()}</TableCell>

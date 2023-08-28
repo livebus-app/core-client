@@ -37,7 +37,7 @@ export function FrameList(props: FrameListProps) {
                 <section className="grid grid-cols-6">
                     {
                         framesObject?.Contents?.map(frame => (
-                            <div className="relative h-64 object-fill">
+                            <div key={frame.Key} className="relative h-64 object-fill">
                                 <Image key={frame.Key} className="overflow-hidden object-cover" fill={true} src={`https://s3.amazonaws.com/lvb-frames-storage/${frame.Key}`} alt="" />
                             </div>
                         ))
