@@ -16,12 +16,12 @@ import localFont from 'next/font/local'
 
 const Inter = localFont({
 	src: [
-		{
-			path: '../font/InterVariable.woff2',
-			style: 'normal',
-		},
+	  {
+		path: '../font/InterVariable.woff2',
+		style: 'normal',
+	  },
 	],
-})
+  })
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -36,7 +36,8 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-				<body className={"grid grid-rows-[min-content,min-content,auto] w-screen h-screen p-8 " + Inter.className}>
+				<body className={"grid grid-rows-[auto] w-screen h-screen p-8 " + Inter.className}>
+
 					{children}
 
 
