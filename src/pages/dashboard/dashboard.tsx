@@ -7,7 +7,7 @@ import { useVehicle } from "@/hooks/useVehicle";
 import { useVehicleTelemetry, useVehicleTelemetryHistory } from "@/hooks/useVehicleTelemetry";
 import Image from "next/image";
 import { useMemo } from "react";
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Text, Label, LineChart, Line, ReferenceLine, Legend } from "recharts"
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Text, Label, LineChart, Line, ReferenceLine, Legend, PieChart, Pie, Cell } from "recharts"
 
 export default function Dashboard({ vehicleId }: { vehicleId: number }) {
     const { vehicle } = useVehicle(vehicleId);
@@ -15,7 +15,7 @@ export default function Dashboard({ vehicleId }: { vehicleId: number }) {
     const { telemetryHistory } = useVehicleTelemetryHistory(vehicleId);
 
     const sortedTelemetryHistory = useMemo(() => telemetryHistory?.sort((historyItemA, historyItemB) => new Date(historyItemA.timestamp) > new Date(historyItemB.timestamp) ? 1 : -1), [telemetryHistory]);
-    
+
     return (
         <main className="h-full max-h-full grid gap-6 grid-cols-4 grid-rows-[200px, auto] overflow-auto">
             <Card className="row-span-1 col-span-1 flex flex-col gap-4 bg-gradient-to-tr from-muted/20">
@@ -64,6 +64,43 @@ export default function Dashboard({ vehicleId }: { vehicleId: number }) {
                     </ResponsiveContainer>
                 </CardContent>
             </Card>
+            {/* <Card className="grid place-items-center gap-4">
+                <CardHeader className="flex flex-row items-start justify-between space-y-0 gap-12 pb-2">
+                    <CardTitle className="font-medium">
+                        Avaliação média
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <PieChart width={140} height={140}>
+                        <Pie data={[
+                            {
+                                "name": "Total",
+                                "value": 0
+                            },
+                            {
+                                "name": "Ocupado",
+                                "value": 100
+                            }
+                        ]} startAngle={-90} accumulate="sum" stroke="none" dataKey="value" nameKey="name" outerRadius={70} innerRadius={54}>
+
+                            {[
+                                {
+                                    "name": "Total",
+                                    "value": 0
+                                },
+                                {
+                                    "name": "Ocupado",
+                                    "value": 100
+                                }
+                            ].map((entry, index) => (
+                                <Cell key={`cell-${index}`} className={entry.name === "Total" ? "fill-muted" : "fill-green-400"} />
+                            ))}
+                            <Label className="text-3xl font-medium fill-foreground" value="100" position="center" />
+                        </Pie>
+                    </PieChart>
+                </CardContent>
+            </Card> */}
+
 
             <Card className="col-span-2 row-span-4 bg-gradient-to-tr from-muted/20 overflow-hidden relative">
                 <Maps />
@@ -87,9 +124,9 @@ export default function Dashboard({ vehicleId }: { vehicleId: number }) {
                         {
                             [...sortedTelemetryHistory || []].sort((a, b) => b.id - a.id)?.map(telemetryItem => (
                                 <TableRow key={telemetryItem.id}>
-                                    <TableCell className="font-medium">{telemetryItem.id}</TableCell>
-                                    <TableCell>{telemetryItem.passengerCount}</TableCell>
-                                    <TableCell>{new Date(telemetryItem.timestamp).toLocaleString()}</TableCell>
+                                    <TableCell className="font-medium font-mono-sans">{telemetryItem.id}</TableCell>
+                                    <TableCell className="font-mono-sans">{telemetryItem.passengerCount}</TableCell>
+                                    <TableCell className="font-mono-sans">{new Date(telemetryItem.timestamp).toLocaleString()}</TableCell>
                                 </TableRow>
                             )
                             )

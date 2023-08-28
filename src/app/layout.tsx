@@ -1,6 +1,5 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import {
 	Select,
@@ -13,9 +12,16 @@ import { Separator } from "@/components/ui/separator";
 import { Toaster } from "@/components/ui/toaster";
 
 import 'maplibre-gl/dist/maplibre-gl.css';
+import localFont from 'next/font/local'
 
-
-const inter = Inter({ subsets: ["latin"] });
+const Inter = localFont({
+	src: [
+		{
+			path: '../font/InterVariable.woff2',
+			style: 'normal',
+		},
+	],
+})
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -30,25 +36,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-				<body className="grid grid-rows-[min-content,min-content,auto] w-screen h-screen p-12">
-
-
-					<header className="flex items-center w-full justify-between">
-						<h1 className="text-2xl font-semibold">
-							live<span className="text-yellow-400">bus</span>
-						</h1>
-						<Select>
-							<SelectTrigger className="w-[180px]">
-								<SelectValue placeholder="Companhia" />
-							</SelectTrigger>
-							<SelectContent>
-								<SelectItem value="light">Livebus inc.</SelectItem>
-								<SelectItem value="dark">Dark</SelectItem>
-								<SelectItem value="system">System</SelectItem>
-							</SelectContent>
-						</Select>
-					</header>
-					<Separator className="my-4" orientation="horizontal" />
+				<body className={"grid grid-rows-[min-content,min-content,auto] w-screen h-screen p-8 " + Inter.className}>
 					{children}
 
 

@@ -5,12 +5,11 @@ import CameraList from "@/pages/camera-list/camera-list";
 
 export default async function Home({ params }: { params: { id: number } }) {
 	const vehicle = await new VehicleService().getVehicle(params.id);
-	const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-	await sleep(10000);
+
 	return (
-		<Tabs defaultValue="dashboard" className="relative h-full max-h-full overflow-auto grid grid-rows-[min-content,auto] gap-4">
+		<Tabs defaultValue="dashboard" className="relative h-full max-h-full overflow-auto grid grid-rows-[min-content,auto] gap-8">
 			<header className="flex justify-between items-center">
-				<h1 className="text-2xl font-semibold">{vehicle.name}</h1>
+				<h1 className="text-3xl font-medium">{vehicle.name}</h1>
 				<TabsList className="w-max">
 					<TabsTrigger value="dashboard">Dashboard</TabsTrigger>
 					<TabsTrigger value="live">Live</TabsTrigger>
