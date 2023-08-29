@@ -2,12 +2,12 @@
 
 import { Maps } from "@/components/maps";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useVehicle } from "@/hooks/useVehicle";
 import { useVehicleTelemetry, useVehicleTelemetryHistory } from "@/hooks/useVehicleTelemetry";
-import Image from "next/image";
 import { useMemo } from "react";
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Text, Label, LineChart, Line, ReferenceLine, Legend, PieChart, Pie, Cell } from "recharts"
+import { ResponsiveContainer, XAxis, YAxis, Label, LineChart, Line, ReferenceLine, PieChart, Pie, Cell } from "recharts";
+import { ResponsiveLine } from "@nivo/line";
 
 export default function Dashboard({ vehicleId }: { vehicleId: number }) {
     const { vehicle } = useVehicle(vehicleId);
@@ -30,13 +30,13 @@ export default function Dashboard({ vehicleId }: { vehicleId: number }) {
                     <div className="text-9xl font-bold">{telemetry?.passengerCount || 0}</div>
                 </CardContent>
             </Card>
-            <Card className="row-span-1 col-span-1 rounded-[--radius] border border-border bg-gradient-to-tr from-muted/20">
+            <Card className="row-span-1 col-span-1 border border-border bg-gradient-to-tr from-muted/20">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 gap-12 pb-2">
                     <CardTitle className="font-medium">
                         Número de passageiros x Tempo
                     </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="w-full h-96">
                     <ResponsiveContainer className={"-ml-6"} width={"104%"} height={180}>
                         <LineChart data={sortedTelemetryHistory} className="mt-4 mr-4" >
                             <XAxis

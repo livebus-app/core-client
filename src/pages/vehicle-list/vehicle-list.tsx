@@ -11,7 +11,7 @@ export default function VehicleList({ vehicles }: { vehicles: Vehicle[] }) {
             <h3 className="scroll-m-20 text-xl font-semibold mb-4">Veículos</h3>
             <div className="w-full grid gap-12 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
                 {vehicles?.map((vehicle) => (
-                    <Card key={vehicle.id} className="bg-gradient-to-tr from-yellow-950/20 hover:from-yellow-950/30 transition-colors">
+                    <Card key={vehicle.id} className="bg-gradient-to-tr from-yellow-50/10 dark:from-yellow-950/10 hover:from-yellow-50/30 dark:hover:from-yellow-950/30 transition-colors">
                         <CardHeader>
                             <CardTitle className="mb-4 flex justify-between items-center">
                                 <span className="font-medium">Veículo #{vehicle.id}</span>
