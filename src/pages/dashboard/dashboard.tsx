@@ -3,11 +3,11 @@
 import { Maps } from "@/components/maps";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import useAlerts from "@/hooks/useAlerts";
 import { useVehicle } from "@/hooks/useVehicle";
 import { useVehicleTelemetry, useVehicleTelemetryHistory } from "@/hooks/useVehicleTelemetry";
 import { useMemo } from "react";
-import { ResponsiveContainer, XAxis, YAxis, Label, LineChart, Line, ReferenceLine, PieChart, Pie, Cell } from "recharts";
-import { ResponsiveLine } from "@nivo/line";
+import { ResponsiveContainer, XAxis, YAxis, Label, LineChart, Line, ReferenceLine } from "recharts";
 
 export default function Dashboard({ vehicleId }: { vehicleId: number }) {
     const { vehicle } = useVehicle(vehicleId);
@@ -36,7 +36,7 @@ export default function Dashboard({ vehicleId }: { vehicleId: number }) {
                         Número de passageiros x Tempo
                     </CardTitle>
                 </CardHeader>
-                <CardContent className="w-full h-96">
+                <CardContent className="w-full">
                     <ResponsiveContainer className={"-ml-6"} width={"104%"} height={180}>
                         <LineChart data={sortedTelemetryHistory} className="mt-4 mr-4" >
                             <XAxis
@@ -64,48 +64,9 @@ export default function Dashboard({ vehicleId }: { vehicleId: number }) {
                     </ResponsiveContainer>
                 </CardContent>
             </Card>
-            {/* <Card className="grid place-items-center gap-4">
-                <CardHeader className="flex flex-row items-start justify-between space-y-0 gap-12 pb-2">
-                    <CardTitle className="font-medium">
-                        Avaliação média
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <PieChart width={140} height={140}>
-                        <Pie data={[
-                            {
-                                "name": "Total",
-                                "value": 0
-                            },
-                            {
-                                "name": "Ocupado",
-                                "value": 100
-                            }
-                        ]} startAngle={-90} accumulate="sum" stroke="none" dataKey="value" nameKey="name" outerRadius={70} innerRadius={54}>
-
-                            {[
-                                {
-                                    "name": "Total",
-                                    "value": 0
-                                },
-                                {
-                                    "name": "Ocupado",
-                                    "value": 100
-                                }
-                            ].map((entry, index) => (
-                                <Cell key={`cell-${index}`} className={entry.name === "Total" ? "fill-muted" : "fill-green-400"} />
-                            ))}
-                            <Label className="text-3xl font-medium fill-foreground" value="100" position="center" />
-                        </Pie>
-                    </PieChart>
-                </CardContent>
-            </Card> */}
-
-
             <Card className="col-span-2 row-span-4 bg-gradient-to-tr from-muted/20 overflow-hidden relative">
                 <Maps />
             </Card>
-
             <Card className="col-span-2 row-span-3 overflow-hidden p-8 bg-gradient-to-tr from-muted/20 flex flex-col">
                 <CardHeader className="p-0 flex flex-row items-center justify-between space-y-0 gap-12 pb-4">
                     <CardTitle className="font-medium">

@@ -14,9 +14,9 @@ export function useVehicleTelemetry(id: number) {
     };
 }
 
-export function useVehicleTelemetryHistory(id: number) {
+export function useVehicleTelemetryHistory(id?: number) {
     const service = new VehicleService();
-    const { data, error, isLoading } = useSWR(`vehicle-telemetry-history-${id}`, () => service.getTelemetryHistory(id), {
+    const { data, error, isLoading } = useSWR(id ? `vehicle-telemetry-history-${id}` : undefined, () => service.getTelemetryHistory(id || 0), {
         refreshInterval: 5000,
     });
 

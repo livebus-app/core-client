@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function VehicleList({ vehicles }: { vehicles: Vehicle[] }) {
     return (
         <div className="w-full">
-            <h3 className="scroll-m-20 text-xl font-semibold mb-4">Veículos</h3>
+            <h3 className="text-3xl font-medium mb-4">Veículos</h3>
             <div className="w-full grid gap-12 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
                 {vehicles?.map((vehicle) => (
                     <Card key={vehicle.id} className="bg-gradient-to-tr from-yellow-50/10 dark:from-yellow-950/10 hover:from-yellow-50/30 dark:hover:from-yellow-950/30 transition-colors">

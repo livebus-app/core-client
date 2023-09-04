@@ -4,6 +4,10 @@ import Dashboard from "@/pages/dashboard/dashboard";
 import CameraList from "@/pages/camera-list/camera-list";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import FrameList from "@/pages/frame-list/frame-list";
+import { Badge } from "@/components/ui/badge";
+import useAlerts from "@/hooks/useAlerts";
+import AlertBadge from "@/components/alert-badge";
 
 export default async function Home({ params }: { params: { id: number } }) {
 	const vehicle = await new VehicleService().getVehicle(params.id);
@@ -17,11 +21,15 @@ export default async function Home({ params }: { params: { id: number } }) {
 							<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M228 128a12 12 0 0 1-12 12H69l51.52 51.51a12 12 0 0 1-17 17l-72-72a12 12 0 0 1 0-17l72-72a12 12 0 0 1 17 17L69 116h147a12 12 0 0 1 12 12Z"></path></svg>
 						</Button>
 					</Link>
-					<h1 className="text-3xl font-medium">{vehicle.name}</h1>
+					<div className="flex items-center gap-5">
+						<h1 className="text-3xl font-medium">{vehicle.name}</h1>
+						<AlertBadge vehicleId={vehicle.id} />
+					</div>
 				</div>
 				<TabsList className="w-max">
 					<TabsTrigger value="dashboard">Dashboard</TabsTrigger>
 					<TabsTrigger value="live">Live</TabsTrigger>
+					<TabsTrigger value="frames">Frames</TabsTrigger>
 				</TabsList>
 			</header>
 			<TabsContent className="h-full mt-0 max-h-full overflow-auto" value="dashboard">
@@ -29,6 +37,9 @@ export default async function Home({ params }: { params: { id: number } }) {
 			</TabsContent>
 			<TabsContent className="h-full mt-0 max-h-full overflow-auto" value="live">
 				<CameraList vehicleId={params.id} />
+			</TabsContent>
+			<TabsContent className="h-full mt-0 max-h-full overflow-auto" value="frames">
+				<FrameList vehicleId={params.id} />
 			</TabsContent>
 		</Tabs>
 	);
